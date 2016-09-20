@@ -1,0 +1,2 @@
+{"method": "POST", "url": "http://54.213.216.115:8080/WebGoat/attack?Screen=1922448916&menu=1100", "body": "HelpFile=AccessControlMatrix.help&SUBMIT=View"}
+{"method": "POST", "url": "http://54.213.216.115:8080/WebGoat/attack?Screen=1922448916&menu=1100", "body": "HelpFile=AccessControlMatrix.help&SUBMIT=View"}
