@@ -4,7 +4,17 @@ Script to Prime OWASP WebGoat App
 import io
 import json
 import urllib2
+from urlparse import urlparse
 import requests
+
+def get_prime_url(request_file):
+    """GET Domain"""
+    req_dat = []
+    with io.open(request_file, mode='r', encoding="utf8", errors="ignore") as filp:
+        req_line = filp.readline()
+    req_dat = json.loads(req_line)
+    parsed_uri = urlparse(req_dat["url"])
+    return '{uri.netloc}'.format(uri=parsed_uri)
 
 def get_cookie(domain):
     """Get Session Cookie"""
@@ -37,8 +47,8 @@ def priming(url, data, cookie):
     contents = urllib2.urlopen(request).read()
     print contents[0:500]
 
-#DOMAIN = "54.210.210.100:8080"
-DOMAIN = raw_input("Enter IP:PORT/ Domain of WebGoat(Ex:54.210.210.100:8080) : ")
+REQUESTS_FILE = 'prime.json'
+DOMAIN = get_prime_url(REQUESTS_FILE)
 SESSION_COOKIE = get_cookie(DOMAIN)
 
 #Prime File Upload
@@ -47,7 +57,7 @@ upload_file(FILE_UPLOAD_URL, SESSION_COOKIE)
 
 #Prime POST Requests
 REQS = []
-with io.open("prime.json", mode='r', encoding="utf8", errors="ignore") as f:
+with io.open(REQUESTS_FILE, mode='r', encoding="utf8", errors="ignore") as f:
     REQS = f.readlines()
 for req_data in REQS:
     json_req = json.loads(req_data)
