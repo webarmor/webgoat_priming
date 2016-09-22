@@ -25,7 +25,7 @@ $(document).ajaxComplete(function myErrorHandler(event, xhr, ajaxOptions, thrown
       else{
           url = ajaxOptions.url;
       }
-      console.log("POST "+url + " DATA: "+ ajaxOptions.data);
-      SEND('{"method": "POST", "url": "'+ url+ '", "body": "'+ajaxOptions.data+'"}');
+      console.log(ajaxOptions.type +" "+url + " DATA: "+ ajaxOptions.data);
+      SEND('{"method": "'+ajaxOptions.type +'", "url": "'+ url+ '", "body": "'+ajaxOptions.data+'"}');
   }
 });
