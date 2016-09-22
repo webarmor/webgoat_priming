@@ -11,7 +11,7 @@ function SEND(data){
 }
 
 $(document).ajaxComplete(function myErrorHandler(event, xhr, ajaxOptions, thrownError) {
-  if (ajaxOptions.type === "POST"){
+  
       var url = '';
       if (String(ajaxOptions.url).indexOf("://") === -1){
           url = window.location.href.replace(location.hash, "");
@@ -27,5 +27,5 @@ $(document).ajaxComplete(function myErrorHandler(event, xhr, ajaxOptions, thrown
       }
       console.log(ajaxOptions.type +" "+url + " DATA: "+ ajaxOptions.data);
       SEND('{"method": "'+ajaxOptions.type +'", "url": "'+ url+ '", "body": "'+ajaxOptions.data+'"}');
-  }
+  
 });

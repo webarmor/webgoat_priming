@@ -39,7 +39,10 @@ def upload_file(url, cookie):
 
 def priming(url, data, cookie):
     """Make Request"""
-    request = urllib2.Request(url, data)
+    if data == "undefined":
+        request = urllib2.Request(url)
+    else:
+        request = urllib2.Request(url, data)
     request.add_header('User-Agent', 'Mozilla/5.0')
     request.add_header('Referer', url)
     request.add_header('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8')
