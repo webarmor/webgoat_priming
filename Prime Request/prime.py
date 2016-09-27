@@ -110,6 +110,53 @@ url = "http://{domain}/WebGoat/attack?Screen={screen}&menu={menu}&QTY1=1&QTY2=1&
 )
 priming(url, "undefined", SESSION_COOKIE)
 
+# Run all the lesson SQL queries
+
+# Numeric
+lesson = find_lesson("Numeric SQL Injection", LESSONS)
+url = "http://{domain}/WebGoat/attack?Screen={screen}&menu={menu}&station=101&SUBMIT=Go!".format(
+    domain = DOMAIN,
+    screen = lesson["screen"],
+    menu = lesson["menu"]
+)
+priming(url, "undefined", SESSION_COOKIE)
+
+# String
+lesson = find_lesson("String SQL Injection", LESSONS)
+url = "http://{domain}/WebGoat/attack?Screen={screen}&menu={menu}&account_name=Your+Name&SUBMIT=Go!".format(
+    domain = DOMAIN,
+    screen = lesson["screen"],
+    menu = lesson["menu"]
+)
+priming(url, "undefined", SESSION_COOKIE)
+
+# Blind Numeric
+lesson = find_lesson("Blind Numeric SQL Injection", LESSONS)
+url = "http://{domain}/WebGoat/attack?Screen={screen}&menu={menu}&account_number=101&SUBMIT=Go!".format(
+    domain = DOMAIN,
+    screen = lesson["screen"],
+    menu = lesson["menu"]
+)
+priming(url, "undefined", SESSION_COOKIE)
+
+# Blind String
+lesson = find_lesson("Blind String SQL Injection", LESSONS)
+url = "http://{domain}/WebGoat/attack?Screen={screen}&menu={menu}&account_number=101&SUBMIT=Go!".format(
+    domain = DOMAIN,
+    screen = lesson["screen"],
+    menu = lesson["menu"]
+)
+priming(url, "undefined", SESSION_COOKIE)
+
+# Command Injection
+lesson = find_lesson("Command Injection", LESSONS)
+url = "http://{domain}/WebGoat/attack?Screen={screen}&menu={menu}&HelpFile=AccessControlMatrix.help&SUBMIT=View".format(
+    domain = DOMAIN,
+    screen = lesson["screen"],
+    menu = lesson["menu"]
+)
+priming(url, "undefined", SESSION_COOKIE)
+
 # Special cases for lessons involving file access
 
 # "Bypass a Path Based Access Control Scheme"
@@ -121,7 +168,7 @@ url2 = "http://{domain}/WebGoat/attack?Screen={screen}&menu={menu}&File=DOMXSS.h
     domain = DOMAIN, screen = lesson["screen"], menu = lesson["menu"])
 url3 = "http://{domain}/WebGoat/attack?Screen={screen}&menu={menu}&File=Phishing.html&SUBMIT=View+File".format(
     domain = DOMAIN, screen = lesson["screen"], menu = lesson["menu"])
-for i in range(0,150):  # >300 requests
+for i in range(0,110):  # >300 requests
     priming(url1, "undefined", SESSION_COOKIE)
     priming(url2, "undefined", SESSION_COOKIE)
     priming(url3, "undefined", SESSION_COOKIE)
