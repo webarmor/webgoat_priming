@@ -1,6 +1,6 @@
 function SEND(data){
     var http = new XMLHttpRequest();
-    var url = "http://127.0.0.1:9090/capture?data="+window.btoa(data);
+    var url = "http://immunio:9090/capture?data="+window.btoa(data);
     http.open("GET", url, true);
     http.onreadystatechange = function() {
         if(http.readyState == 4 && http.status == 200) {

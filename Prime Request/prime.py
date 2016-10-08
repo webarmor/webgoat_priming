@@ -82,7 +82,7 @@ def priming(url, data, cookie, count=1):
     return contents
 
 parser = argparse.ArgumentParser()
-parser = argparse.ArgumentParser(description='Process some integers.')
+parser = argparse.ArgumentParser(description='IMMUNIO WebGoat Priming Script.')
 parser.add_argument('-d', '--domain', help='The domain and port of the WebGoat instance to prime.')
 parser.add_argument('-s', '--session', help='Optional JSESSIONID.')
 args = parser.parse_args()
