@@ -99,6 +99,8 @@ if SESSION_COOKIE == '':
 LESSONS = get_lesson_urls(DOMAIN, SESSION_COOKIE)
 
 # Suspicious HTTP Header
+print "\n[INFO] Suspicious HTTP Header"
+
 url = "http://{domain}/WebGoat/".format(
     domain = DOMAIN,
 )
@@ -106,15 +108,17 @@ cookie = SESSION_COOKIE.split("=")
 cookies = {cookie[0]: cookie[1]}
 # we look for a variety of suspicious header names and values. This is an example
 headers = {"Acunetix-Product": "Acunetix vulnerability scanner"}
-req = requests.get(url, files=files, cookies=cookies, headers=headers)
+req = requests.get(url, cookies=cookies, headers=headers)
 
 # Shellshock
+print "\n[INFO] Shellshock"
 headers = {"Shellshock-Example": "() { :; }; Shellshock"}
-req = requests.get(url, files=files, cookies=cookies, headers=headers)
+req = requests.get(url, cookies=cookies, headers=headers)
 
 # Method Tampering
 # We actually build a whitelist of VERBS that are OK for an application.
 # However we never allow TRACE / TRACK as they are a known vuln in HTTP
-req=requests.request('TRACE', url)
-
+print "\n[INFO] Method Tampering"
+req=requests.request('track', url)
+print req.status_code
 print "\n[INFO] Attacks Completed!"
